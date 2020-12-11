@@ -11,6 +11,36 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-unused-vars": "warn"
-  }
+    "no-unused-vars": "warn",
+    "max-len": [
+      "error",
+      {
+        "code": 95,
+        "tabWidth": 2,
+        "ignoreUrls": true,
+        "ignorePattern": "goog.(module|require)"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.tsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "no-undef": "off"
+      }
+    },
+    {
+      "files": ["**/*.json"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "no-unused-expressions": "off",
+        "comma-dangle": "off"
+      }
+    }
+  ]
 }

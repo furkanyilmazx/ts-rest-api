@@ -2,7 +2,15 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const {API_ENV, DEBUG_MODE, SERVICE_NAME, DEPLOY_ENV, LOG_LEVEL, LOG_PATH, PORT} = process.env;
+const {
+  API_ENV,
+  DEBUG_MODE,
+  SERVICE_NAME,
+  DEPLOY_ENV,
+  LOG_LEVEL,
+  LOG_PATH,
+  PORT,
+} = process.env;
 
 const CONFIG = {
   apiName: SERVICE_NAME,
