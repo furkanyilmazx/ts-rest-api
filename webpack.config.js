@@ -15,7 +15,7 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR }) => {
     },
     output: {
       path: outputDir,
-      filename: `[name].${API_ENV}.bundle.js`,
+      filename: `api.bundle.js`,
     },
     ignoreWarnings: [
       {
