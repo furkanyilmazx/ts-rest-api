@@ -89,6 +89,6 @@ typings/
 
 volumes/
 .vscode
-dist
-certs
-build
+dist/
+certs/
+build/

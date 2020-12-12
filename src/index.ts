@@ -1,17 +1,27 @@
 import express from 'express';
 import { StatusCodes } from 'http-status-codes';
+
 import Response from './common/Response';
 
-const app = express();
+import Logger, { loggerMiddleware } from '@project/utils/logger';
+import { TCorrelationIdRequest } from '@project/types/common';
+
+const logger = Logger.child({ module: 'index.ts' });
+
 const PORT = process.env.PORT || 8080;
 
-app.get('/health', (req, res) =>
+const app = express();
+app.use(loggerMiddleware);
+
+app.get('/health', (req: TCorrelationIdRequest, res) => {
+  logger.info(`dsad ${req.correlationId}`);
   new Response<object>({
     status: StatusCodes.OK,
     result: '',
     pagination: { total: '21', page: '1', pageSize: '3' },
-  }).send(res)
-);
+  }).send(res);
+});
+
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Ssssddezrver is running at http://localhost:${PORT}`);
+  logger.info(`⚡️[server]: Ssssddezrver is running at http://localhost:${PORT}`);
 });
