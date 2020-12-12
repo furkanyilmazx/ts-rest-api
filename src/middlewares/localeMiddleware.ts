@@ -9,7 +9,8 @@ function localeMiddleware(
   res: express.Response,
   next: express.NextFunction
 ) {
-  const locale: TLocale = req.body?.locale || req.query.locale || 'en';
+  const locale: TLocale =
+    req.body?.locale || req.query.locale || req.headers['x-locale'] || 'en';
   res.setHeader('X-Locale', locale);
   i18n.setLocale(locale);
   next();

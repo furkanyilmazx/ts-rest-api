@@ -1,5 +1,4 @@
 import express from 'express';
-import { StatusCodes } from 'http-status-codes';
 
 import Response from './common/Response';
 
@@ -13,6 +12,7 @@ const logger = Logger.child({ module: 'index.ts' });
 const PORT = process.env.PORT || 8080;
 
 const app = express();
+
 app.use(loggerMiddleware);
 app.use(localeMiddleware);
 
