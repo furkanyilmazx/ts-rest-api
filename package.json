@@ -14,7 +14,8 @@
     "start": "yarn build && node build/index.local.bundle.js",
     "test": "jest --watchAll=false",
     "lint": "eslint . --ext .ts,.js",
-    "lint:fix": "eslint . --ext .ts,.js --fix"
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "heroku-prebuild": "yarn install --production=false"
   },
   "husky": {
     "hooks": {
