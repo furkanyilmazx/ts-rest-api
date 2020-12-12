@@ -36,7 +36,6 @@ export default class Response<T> {
 
   send(res: express.Response) {
     let response = res || this._res;
-    console.log('send ~ this._httpStatus', this._httpStatus);
     response.status(this._httpStatus).send(this);
   }
 }
