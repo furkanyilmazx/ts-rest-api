@@ -1,1 +1,10 @@
-{ "hello": "hi" }
+{
+  "hello": "hi!",
+
+  "errors.general": "100000;;An Error Occured!",
+  "errors.generalWithCause": "100000;;An Error Occured! Cause by: %s",
+  "errors.tokenExpire": "100001;;Token expire",
+  "errors.aa": "100001;;Token expire",
+  "errors.bb": "100001;;Token expire",
+  "errors.cc": "100001;;Token expire"
+}

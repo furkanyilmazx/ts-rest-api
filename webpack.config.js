@@ -69,7 +69,7 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR }) => {
       new FileManagerPlugin({
         onEnd: {
           copy: [
-            { source: './src/locales', destination: `${outputDir}/locales` },
+            //{ source: './src/locales/*.json', destination: `${outputDir}/locales` },
             { source: '.env*', destination: `${outputDir}` },
             { source: '*.ico', destination: `${outputDir}/public` },
           ],
@@ -80,7 +80,7 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR }) => {
       }),
     ],
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.js', '.json'],
       alias: {
         '@project': path.resolve(__dirname, 'src'),
       },
