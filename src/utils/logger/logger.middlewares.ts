@@ -1,7 +1,8 @@
 import express from 'express';
 import morgan from 'morgan';
 import { v4 as uuidv4 } from 'uuid';
-import { TCorrelationIdRequest } from './logger.types';
+
+import { TCorrelationIdRequest } from '@project/types/common';
 
 import { MORGAN_LOG_FORMAT } from './logger.constants';
 
