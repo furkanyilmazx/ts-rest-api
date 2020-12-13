@@ -1,31 +1,39 @@
 import express from 'express';
+import { StatusCodes } from 'http-status-codes';
+import 'express-async-errors';
 
-import localeMiddleware from '@project/middlewares/localeMiddleware';
-import errorMiddleware from '@project/middlewares/errorMiddleware';
-import Logger, { loggerMiddleware } from '@project/utils/logger';
+import CONFIG from '@project/configs';
+import Response from '@project/common/Response';
 import { TCorrelationIdRequest } from '@project/types/common';
-import BaseError from './common/BaseError';
+
+import Logger from '@project/utils/logger';
+import middlewares from '@project/middlewares/middlewares';
+
+const { beforeMiddlewares, afterMiddlewares } = middlewares;
 
 const logger = Logger.child({ module: 'index.ts' });
 
-const PORT = process.env.PORT || 8080;
-
 const app = express();
+// Middleware before all routes
+app.disable('x-powered-by');
+app.use(beforeMiddlewares);
 
-app.use(loggerMiddleware);
-app.use(localeMiddleware);
-
+// All routes must be in below
 app.get('/health', (req: TCorrelationIdRequest, res, next) => {
   logger.info('Health', { correlationId: req.correlationId });
   try {
-    throw new BaseError('errors.generalWithCause', 'Deneme');
+    const response = new Response<object>({
+      result: { Anaaa: 'SSS' },
+      status: StatusCodes.PARTIAL_CONTENT,
+    });
+    response.send(res);
   } catch (error) {
     next(error);
   }
 });
 
-app.use(errorMiddleware);
+app.use(afterMiddlewares);
 
-app.listen(PORT, () => {
-  logger.info(`⚡️[server]: Ssssddezrver is running at http://localhost:${PORT}`);
+app.listen(CONFIG.API_PORT, () => {
+  logger.info(`⚡️[server]: Ssssddezrver is srunning at http://localhost:${CONFIG.API_PORT}`);
 });

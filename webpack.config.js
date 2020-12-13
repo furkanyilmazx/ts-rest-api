@@ -7,8 +7,9 @@ const FileManagerPlugin = require('filemanager-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
-module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR }) => {
+module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR, PUBLIC_DIR }) => {
   const outputDir = path.join(__dirname, BUILD_DIR || './build');
+  const publicDir = path.join(outputDir, PUBLIC_DIR || './public');
   return {
     entry: {
       index: './src/index.ts',
@@ -64,14 +65,15 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR }) => {
       }), // Dong
       new webpack.DefinePlugin({
         'process.env.API_ENV': JSON.stringify(API_ENV),
+        'process.env.PUBLIC_DIR': JSON.stringify(PUBLIC_DIR),
         'process.env.DEBUG_MODE': JSON.stringify(DEBUG_MODE),
       }),
       new FileManagerPlugin({
         onEnd: {
           copy: [
             //{ source: './src/locales/*.json', destination: `${outputDir}/locales` },
-            { source: '.env*', destination: `${outputDir}` },
-            { source: '*.ico', destination: `${outputDir}/public` },
+            { source: '.env*', destination: outputDir },
+            { source: '*.ico', destination: publicDir },
           ],
         },
       }),

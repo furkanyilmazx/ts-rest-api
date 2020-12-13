@@ -1,6 +1,5 @@
-import express from 'express';
 import { StatusCodes } from 'http-status-codes';
-import BaseError from './BaseError';
+import BaseError from '../BaseError';
 
 type TResponse = {
   pagination?: {
@@ -10,7 +9,6 @@ type TResponse = {
   };
   status: StatusCodes;
   result: TResult;
-  res?: express.Response;
   correlation_id?: string;
 };
 

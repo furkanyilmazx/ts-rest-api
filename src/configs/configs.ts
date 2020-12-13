@@ -12,6 +12,7 @@ type TProcessEnv = {
   LOG_LEVEL?: string;
   LOG_PATH?: string;
   PORT?: string;
+  PUBLIC_DIR: string;
 };
 
 declare var process: {
@@ -24,6 +25,7 @@ const CONFIG: TConfig = {
   API_ENV: (process.env.API_ENV as TApiEnv) || 'production',
   DEPLOY_ENV: (process.env.DEPLOY_ENV as TDeployEnv) || 'dc',
   DEBUG_MODE: process.env.DEBUG_MODE || 'disabled',
+  PUBLIC_DIR: process.env.PUBLIC_DIR || './public',
   LOG: {
     LEVEL: process.env.LOG_LEVEL || 'info',
     FILE_PATH: process.env.LOG_PATH || './logs',
