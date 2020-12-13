@@ -1,8 +1,7 @@
 import express from 'express';
 
-import Response from './common/Response';
-
 import localeMiddleware from '@project/middlewares/localeMiddleware';
+import errorMiddleware from '@project/middlewares/errorMiddleware';
 import Logger, { loggerMiddleware } from '@project/utils/logger';
 import { TCorrelationIdRequest } from '@project/types/common';
 import BaseError from './common/BaseError';
@@ -16,10 +15,16 @@ const app = express();
 app.use(loggerMiddleware);
 app.use(localeMiddleware);
 
-app.get('/health', (req: TCorrelationIdRequest, res) => {
-  logger.info(`dsad ${req.correlationId}`);
-  new Response<BaseError>(new BaseError('errors.general')).send(res);
+app.get('/health', (req: TCorrelationIdRequest, res, next) => {
+  logger.info('Health', { correlationId: req.correlationId });
+  try {
+    throw new BaseError('errors.generalWithCause', 'Deneme');
+  } catch (error) {
+    next(error);
+  }
 });
+
+app.use(errorMiddleware);
 
 app.listen(PORT, () => {
   logger.info(`⚡️[server]: Ssssddezrver is running at http://localhost:${PORT}`);

@@ -5,19 +5,20 @@ import { TLocaleId } from '@project/types/common';
 
 class BaseError extends Error {
   name: string;
-  code: string;
+  errorMessage: string;
+  errorCode: string;
   status: StatusCodes;
 
   constructor(msg: TLocaleId, ...rest: any[]) {
     const messageAnCode = i18n.__(msg, ...rest).split(';;');
-    console.log('constructor ~ i18n.__(msg, ...rest)', i18n.__(msg), msg);
     const code = messageAnCode[0];
     const message = messageAnCode[1];
 
     super(message);
 
     this.name = this.constructor.name;
-    this.code = code;
+    this.errorMessage = message;
+    this.errorCode = code;
     this.status = HttpStatus.INTERNAL_SERVER_ERROR;
   }
 }

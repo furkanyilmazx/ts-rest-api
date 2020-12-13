@@ -1,6 +1,7 @@
 {
   "hello": "hi!",
 
+  "errors.internal": "999;;An Error Occured!",
   "errors.general": "100000;;An Error Occured!",
   "errors.generalWithCause": "100000;;An Error Occured! Cause by: %s",
   "errors.tokenExpire": "100001;;Token expire",

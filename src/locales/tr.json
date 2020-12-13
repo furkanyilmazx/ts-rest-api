@@ -1,6 +1,7 @@
 {
   "hello": "merhaba!",
 
+  "errors.internal": "999;;Bir Hata Olustu!",
   "errors.general": "100000;;Bir Hata Olustu!",
   "errors.generalWithCause": "100000;;Bir Hata Olustu! Sebebi: %s",
   "errors.tokenExpire": "100001;;Token surersi doldu",

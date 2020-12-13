@@ -43,8 +43,6 @@ const winstonLogger: TWinstonLogger = createLogger({
   transports: [dailyRoateTransformer],
 });
 
-console.log('API_ENV', API_ENV);
-
 if (API_ENV === 'local') {
   winstonLogger.add(
     new transports.Console({

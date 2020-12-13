@@ -11,6 +11,7 @@ type TResponse = {
   status: StatusCodes;
   result: TResult;
   res?: express.Response;
+  correlation_id?: string;
 };
 
 type ErroredResponse = BaseError & Partial<TResponse>;
