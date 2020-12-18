@@ -38,7 +38,9 @@
       "node_modules/(?!variables/.*)"
     ],
     "moduleNameMapper": {
-      "@project(.*)$": "<rootDir>/src/$1"
+      "@project(.*)$": "<rootDir>/src/application/$1",
+      "@locales(.*)$": "<rootDir>/src/locales/$1",
+      "@system(.*)$": "<rootDir>/src/system/$1"
     },
     "testMatch": [
       "<rootDir>/**/*.test.(js|jsx|ts|tsx)",
