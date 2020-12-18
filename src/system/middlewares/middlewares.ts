@@ -1,7 +1,8 @@
 import express from 'express';
 import compression from 'compression';
 import cors from 'cors';
-import { loggerMiddleware } from '@project/utils/logger';
+
+import { loggerMiddleware } from '@system/utils/logger';
 
 import localeMiddleware from './localeMiddleware';
 import staticServerMiddleware from './staticServerMiddleware';

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { en } from '@project/locales';
+import { en } from '@locales';
 
 export type TLocaleId = keyof typeof en;
 

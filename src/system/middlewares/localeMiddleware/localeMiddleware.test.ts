@@ -1,7 +1,8 @@
-import localeMiddleware from './localeMiddleware';
-
-import i18n from '@project/utils/i18n';
 import express from 'express';
+
+import i18n from '@system/utils/i18n';
+
+import localeMiddleware from './localeMiddleware';
 
 describe('localeMiddleware.test', () => {
   const spySetLocale = jest.spyOn(i18n, 'setLocale');

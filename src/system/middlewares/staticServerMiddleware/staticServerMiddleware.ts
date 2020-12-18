@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 
-import CONFIG from '@project/configs';
+import CONFIG from '@system/configs';
 
 const staticFilesDir = path.join(__dirname, CONFIG.PUBLIC_DIR);
 const indexHtmlDir = staticFilesDir + '/index.html';

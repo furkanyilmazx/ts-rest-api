@@ -2,12 +2,11 @@ import express from 'express';
 import morgan from 'morgan';
 import { v4 as uuidv4 } from 'uuid';
 
-import { TCorrelationIdRequest } from '@project/types/common';
-
-import { MORGAN_LOG_FORMAT } from './logger.constants';
+import { TCorrelationIdRequest } from '@system/types/common';
+import CONFIG from '@system/configs';
 
 import winstonLogger from './logger';
-import CONFIG from '@project/configs';
+import { MORGAN_LOG_FORMAT } from './logger.constants';
 
 const correlationIdMidlleware: express.RequestHandler = (
   req: TCorrelationIdRequest,

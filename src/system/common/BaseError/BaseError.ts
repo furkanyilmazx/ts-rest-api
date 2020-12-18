@@ -1,7 +1,7 @@
 import HttpStatus, { StatusCodes } from 'http-status-codes';
 
-import i18n from '@project/utils/i18n';
-import { TLocaleId } from '@project/types/common';
+import i18n from '@system/utils/i18n';
+import { TLocaleId } from '@system/types/common';
 
 class BaseError extends Error {
   name: string;

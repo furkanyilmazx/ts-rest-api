@@ -1,7 +1,7 @@
 import { createLogger, format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 
-import CONFIG from '@project/configs';
+import CONFIG from '@system/configs';
 
 import { TWinstonLogger } from './logger.types';
 

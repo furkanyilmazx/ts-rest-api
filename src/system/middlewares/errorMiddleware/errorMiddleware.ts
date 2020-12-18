@@ -1,11 +1,11 @@
 import express from 'express';
 
-import BaseError from '@project/common/BaseError';
-import Response from '@project/common/Response';
+import BaseError from '@system/common/BaseError';
+import Response from '@system/common/Response';
 
-import Logger from '@project/utils/logger';
+import Logger from '@system/utils/logger';
 
-import { TCorrelationIdRequest } from '@project/types/common';
+import { TCorrelationIdRequest } from '@system/types/common';
 
 function errorMiddleware(
   err: Error,

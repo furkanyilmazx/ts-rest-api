@@ -1,8 +1,8 @@
 import express from 'express';
 
-import i18n from '@project/utils/i18n';
+import { TLocale } from '@locales';
 
-import { TLocale } from '@project/locales';
+import i18n from '@system/utils/i18n';
 
 function localeMiddleware(
   req: express.Request,

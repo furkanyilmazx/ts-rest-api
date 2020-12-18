@@ -1,7 +1,7 @@
-import configs from './configs/configs';
+import CONFIG from '@system/configs';
 
 describe('Application', () => {
   it('config port should be', () => {
-    expect(configs.API_PORT).toBe('8080');
+    expect(CONFIG.API_PORT).toBe('8080');
   });
 });

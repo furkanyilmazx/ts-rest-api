@@ -16,7 +16,9 @@
     "isolatedModules": true,
     "baseUrl": "./",
     "paths": {
-      "@project/*": ["./src/*"]
+      "@project/*": ["./src/application/*"],
+      "@locales": ["./src/locales"],
+      "@system/*": ["./src/system/*"]
     }
   },
   "include": ["src/**/*"],

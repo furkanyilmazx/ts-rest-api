@@ -2,12 +2,11 @@ import express from 'express';
 import { StatusCodes } from 'http-status-codes';
 import 'express-async-errors';
 
-import CONFIG from '@project/configs';
-import Response from '@project/common/Response';
-import { TCorrelationIdRequest } from '@project/types/common';
-
-import Logger from '@project/utils/logger';
-import middlewares from '@project/middlewares/middlewares';
+import Response from '@system/common/Response';
+import CONFIG from '@system/configs';
+import Logger from '@system/utils/logger';
+import middlewares from '@system/middlewares/middlewares';
+import { TCorrelationIdRequest } from '@system/types/common';
 
 const { beforeMiddlewares, afterMiddlewares } = middlewares;
 

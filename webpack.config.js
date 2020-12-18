@@ -84,7 +84,9 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR, PUBLIC_DIR }) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.json'],
       alias: {
-        '@project': path.resolve(__dirname, 'src'),
+        '@project': path.resolve(__dirname, 'src/application'),
+        '@locales': path.resolve(__dirname, 'src/locales'),
+        '@system': path.resolve(__dirname, 'src/system'),
       },
     },
     optimization: {
