@@ -1,5 +1,4 @@
-export const MORGAN_LOG_FORMAT = `:correlationId \
-:req[x-forwarded-for] \
+export const MORGAN_LOG_FORMAT = `:req[x-forwarded-for] \
 ":method :url" \
 :status \
 ":referrer" \

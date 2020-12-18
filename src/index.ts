@@ -20,7 +20,7 @@ app.use(beforeMiddlewares);
 
 // All routes must be in below
 app.get('/health', (req: TCorrelationIdRequest, res, next) => {
-  logger.info('Health', { correlationId: req.correlationId });
+  logger.info('Health');
   try {
     const response = new Response<object>({
       result: { Anaaa: 'SSS' },

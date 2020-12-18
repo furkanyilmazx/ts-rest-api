@@ -1,9 +1,7 @@
-import morgan from 'morgan';
 import { createLogger, format, transports } from 'winston';
 import 'winston-daily-rotate-file';
 
 import CONFIG from '@project/configs';
-import { TCorrelationIdRequest } from '@project/types/common';
 
 import { TWinstonLogger } from './logger.types';
 
@@ -20,9 +18,9 @@ const logFormatPrintf = printf(
     moduleDefault,
     correlationId,
   }) =>
-    `${timestamp} ${level} [${serviceName},${correlationId || ''}] [${
-      moduleName || moduleDefault
-    }]: ${message}`
+    `${timestamp} ${level} [${serviceName},${
+      CONFIG.ASYNC_STORAGE.getStore()?.correlationId || correlationId || ''
+    }] [${moduleName || moduleDefault}]: ${message}`
 );
 
 const dailyRoateTransformer = new transports.DailyRotateFile({
@@ -58,7 +56,5 @@ winstonLogger.morganStream = {
     });
   },
 };
-
-morgan.token('correlationId', (req: TCorrelationIdRequest) => req.correlationId);
 
 export default winstonLogger;

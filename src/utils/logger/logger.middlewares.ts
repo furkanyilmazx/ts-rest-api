@@ -7,14 +7,21 @@ import { TCorrelationIdRequest } from '@project/types/common';
 import { MORGAN_LOG_FORMAT } from './logger.constants';
 
 import winstonLogger from './logger';
+import CONFIG from '@project/configs';
 
 const correlationIdMidlleware: express.RequestHandler = (
   req: TCorrelationIdRequest,
   _: express.Response,
   next: express.NextFunction
 ) => {
-  req.correlationId = uuidv4();
-  next();
+  const store = {
+    correlationId: uuidv4(),
+  };
+
+  req.correlationId = store.correlationId;
+  CONFIG.ASYNC_STORAGE.run(store, () => {
+    next();
+  });
 };
 
 const morganMiddleware: express.RequestHandler = morgan(MORGAN_LOG_FORMAT, {

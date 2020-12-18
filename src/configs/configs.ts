@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'async_hooks';
 import dotenv from 'dotenv';
 
 import { TApiEnv, TConfig, TDeployEnv } from './configs.types';
@@ -30,6 +31,7 @@ const CONFIG: TConfig = {
     LEVEL: process.env.LOG_LEVEL || 'info',
     FILE_PATH: process.env.LOG_PATH || './logs',
   },
+  ASYNC_STORAGE: new AsyncLocalStorage<{ correlationId: string }>(),
 };
 
 export default CONFIG;

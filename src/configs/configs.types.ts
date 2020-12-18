@@ -1,3 +1,5 @@
+import { AsyncLocalStorage } from 'async_hooks';
+
 export type TConfig = {
   API_NAME: string;
   API_PORT: string;
@@ -9,6 +11,7 @@ export type TConfig = {
     LEVEL: string;
     FILE_PATH: string;
   };
+  ASYNC_STORAGE: AsyncLocalStorage<{ correlationId: string }>;
 };
 
 export type TApiEnv = 'local' | 'stg' | 'sandbox' | 'production';
