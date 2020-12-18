@@ -9,7 +9,6 @@ type TResponse = {
   };
   status: StatusCodes;
   result: TResult;
-  correlation_id?: string;
 };
 
 type ErroredResponse = BaseError & Partial<TResponse>;

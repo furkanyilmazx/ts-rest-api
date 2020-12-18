@@ -6,7 +6,7 @@ import Response from '@system/common/Response';
 import CONFIG from '@system/configs';
 import Logger from '@system/utils/logger';
 import middlewares from '@system/middlewares/middlewares';
-import { TCorrelationIdRequest } from '@system/types/common';
+import BaseError from '@system/common/BaseError';
 
 const { beforeMiddlewares, afterMiddlewares } = middlewares;
 
@@ -18,17 +18,14 @@ app.disable('x-powered-by');
 app.use(beforeMiddlewares);
 
 // All routes must be in below
-app.get('/health', (req: TCorrelationIdRequest, res, next) => {
+app.get('/health', (req, res) => {
   logger.info('Health');
-  try {
-    const response = new Response<object>({
-      result: { Anaaa: 'SSS' },
-      status: StatusCodes.PARTIAL_CONTENT,
-    });
-    response.send(res);
-  } catch (error) {
-    next(error);
-  }
+  const response = new Response<object>({
+    result: { Anaaa: 'SSS' },
+    status: StatusCodes.PARTIAL_CONTENT,
+  });
+
+  response.send(res);
 });
 
 app.use(afterMiddlewares);

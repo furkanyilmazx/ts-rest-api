@@ -10,14 +10,16 @@ import { MORGAN_LOG_FORMAT } from './logger.constants';
 
 const correlationIdMidlleware: express.RequestHandler = (
   req: TCorrelationIdRequest,
-  _: express.Response,
+  res: express.Response,
   next: express.NextFunction
 ) => {
   const store = {
     correlationId: uuidv4(),
   };
 
+  res.setHeader('X-Correlation', store.correlationId);
   req.correlationId = store.correlationId;
+
   CONFIG.ASYNC_STORAGE.run(store, () => {
     next();
   });

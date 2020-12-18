@@ -1,7 +1,6 @@
 import express from 'express';
 
 import Logger from '@system/utils/logger';
-import { TCorrelationIdRequest } from '@system/types/common';
 import BaseError from '@system/common/BaseError';
 import Response from '@system/common/Response';
 
@@ -13,8 +12,7 @@ describe('errorMiddleware.test', () => {
     body: {},
     query: {},
     headers: {},
-    correlationId: 'XXXXX',
-  } as TCorrelationIdRequest;
+  } as express.Request;
   const res = ({
     send: jest.fn(),
     status: jest.fn(() => res),
@@ -30,7 +28,6 @@ describe('errorMiddleware.test', () => {
     expect(spyLoggerChild).toBeCalledTimes(1);
     expect(spyLoggerChild).toBeCalledWith({
       module: 'errorMiddleware.js',
-      correlationId: 'XXXXX',
     });
 
     spyLoggerChild.mockClear();
