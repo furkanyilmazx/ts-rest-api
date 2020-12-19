@@ -8,9 +8,11 @@ import localeMiddleware from './localeMiddleware';
 import staticServerMiddleware from './staticServerMiddleware';
 import notFoundMiddleware from './notFoundMiddleware';
 import errorMiddleware from './errorMiddleware';
+import rateLimiterMiddleware from './rateLimiterMiddleware';
 
 const beforeMiddlewares: express.RequestHandler[] = [
   ...loggerMiddleware,
+  rateLimiterMiddleware,
   cors<express.Request>(),
   express.json(),
   express.urlencoded({ extended: true }),

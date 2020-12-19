@@ -14,8 +14,14 @@ export default class Response<T> {
   readonly system_time: number;
   private _httpStatus: StatusCodes;
 
-  constructor({ pagination, status, result, errorCode, errorMessage }: TResponseProps<T>) {
-    this._httpStatus = status || StatusCodes.OK;
+  constructor({
+    pagination,
+    status = StatusCodes.OK,
+    result,
+    errorCode,
+    errorMessage,
+  }: TResponseProps<T>) {
+    this._httpStatus = status;
     this.system_time = Date.now();
     this.status = errorCode ? 'failure' : 'success';
     this.error_code = errorCode;

@@ -6,8 +6,18 @@ import Response from '@system/common/Response';
 
 import errorMiddleware from './errorMiddleware';
 
+jest.mock('@system/utils/logger', () => {
+  return {
+    debug: jest.fn(),
+    log: jest.fn(),
+    error: jest.fn(),
+    child: jest.fn().mockReturnValue({ debug: jest.fn(), log: jest.fn(), error: jest.fn() }),
+  };
+});
+
 describe('errorMiddleware.test', () => {
-  const spyLoggerChild = jest.spyOn(Logger, 'child');
+  // trying to mock createLogger to return a specific logger instance
+
   const req = {
     body: {},
     query: {},
@@ -23,16 +33,17 @@ describe('errorMiddleware.test', () => {
 
   jest.spyOn(Date, 'now').mockImplementation(() => 1479427200000);
 
+  const logChild = Logger.child({ module: 'errorMiddleware.js' });
+
+  const spyChildLoggerErrorLog = jest.spyOn(logChild, 'error');
+
   afterEach(() => {
     expect(next).toBeCalledTimes(0);
-    expect(spyLoggerChild).toBeCalledTimes(1);
-    expect(spyLoggerChild).toBeCalledWith({
-      module: 'errorMiddleware.js',
-    });
+    expect(spyChildLoggerErrorLog).toBeCalledTimes(1);
 
-    spyLoggerChild.mockClear();
     next.mockClear();
     spySend.mockClear();
+    spyChildLoggerErrorLog.mockClear();
   });
 
   it('When JS error response with errors.internal 99 code', () => {

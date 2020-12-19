@@ -7,7 +7,7 @@ type TResponse = {
     pageSize: string;
     total: string;
   };
-  status: StatusCodes;
+  status?: StatusCodes;
   result: TResult;
 };
 

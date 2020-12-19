@@ -5,7 +5,7 @@
   "errors.general": "100000;;Bir Hata Olustu!",
   "errors.generalWithCause": "100000;;Bir Hata Olustu! Sebebi: %s",
   "errors.tokenExpire": "100001;;Token surersi doldu",
-  "errors.aa": "100001;;Token expire",
+  "errors.tooManyRequest": "100011;;Cok fazla istek alindi",
   "errors.bb": "100001;;Token expire",
   "errors.cc": "100001;;Token expire"
 }

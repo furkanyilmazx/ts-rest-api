@@ -5,7 +5,7 @@
   "errors.general": "100000;;An Error Occured!",
   "errors.generalWithCause": "100000;;An Error Occured! Cause by: %s",
   "errors.tokenExpire": "100001;;Token expire",
-  "errors.aa": "100001;;Token expire",
+  "errors.tooManyRequest": "100011;;Too many request",
   "errors.bb": "100001;;Token expire",
   "errors.cc": "100001;;Token expire"
 }

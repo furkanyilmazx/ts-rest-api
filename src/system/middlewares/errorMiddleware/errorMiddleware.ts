@@ -5,6 +5,10 @@ import Response from '@system/common/Response';
 
 import Logger from '@system/utils/logger';
 
+const logger = Logger.child({
+  module: 'errorMiddleware.js',
+});
+
 function errorMiddleware(
   err: Error,
   req: express.Request,
@@ -12,10 +16,6 @@ function errorMiddleware(
   // eslint-disable-next-line no-unused-vars
   _next: express.NextFunction
 ): void {
-  const logger = Logger.child({
-    module: 'errorMiddleware.js',
-  });
-
   let baseErrorResponse;
   if (err instanceof BaseError) {
     logger.error(`An error occured code: ${err.errorCode}, msg: ${err.errorMessage}`);
