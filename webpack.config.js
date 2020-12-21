@@ -22,6 +22,12 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR, PUBLIC_DIR }) => {
       {
         module: RegExp('node_modules/express/lib/view.js'), // A RegExp
       },
+      {
+        module: RegExp('./node_modules/require_optional/*'), // A RegExp
+      },
+      {
+        module: RegExp('node_modules/mongo*'), // A RegExp
+      },
     ],
     stats: {
       warnings: true,
@@ -84,7 +90,7 @@ module.exports = ({ API_ENV, DEBUG_MODE, BUILD_DIR, PUBLIC_DIR }) => {
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.json'],
       alias: {
-        '@project': path.resolve(__dirname, 'src/application'),
+        '@application': path.resolve(__dirname, 'src/application'),
         '@locales': path.resolve(__dirname, 'src/locales'),
         '@system': path.resolve(__dirname, 'src/system'),
       },

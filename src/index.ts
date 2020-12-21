@@ -5,6 +5,9 @@ import Response from '@system/common/Response';
 import CONFIG from '@system/configs';
 import Logger from '@system/utils/logger';
 import middlewares from '@system/middlewares/middlewares';
+import router from '@system/utils/router';
+
+import '@system/utils/mongoose';
 
 const { beforeMiddlewares, afterMiddlewares } = middlewares;
 
@@ -14,6 +17,9 @@ const app = express();
 // Middleware before all routes
 app.disable('x-powered-by');
 app.use(beforeMiddlewares);
+
+// Applications router
+app.use(router);
 
 // All routes must be in below
 app.get('/health', (req, res) => {

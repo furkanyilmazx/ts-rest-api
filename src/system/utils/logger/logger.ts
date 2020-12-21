@@ -3,7 +3,7 @@ import 'winston-daily-rotate-file';
 
 import CONFIG from '@system/configs';
 
-import { TWinstonLogger } from './logger.types';
+import { TWinstonLogger, TLoggerState } from './logger.types';
 
 const { API_NAME, API_ENV, LOG } = CONFIG;
 const { combine, timestamp, printf } = format;
@@ -31,7 +31,7 @@ const dailyRoateTransformer = new transports.DailyRotateFile({
   symlinkName: `${API_NAME}.log`,
 });
 
-const winstonLogger: TWinstonLogger = createLogger({
+const Logger: TWinstonLogger = createLogger({
   level: API_ENV == 'local' ? 'debug' : 'info',
   format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss.ms' }), logFormatPrintf),
   defaultMeta: {
@@ -42,19 +42,23 @@ const winstonLogger: TWinstonLogger = createLogger({
 });
 
 if (API_ENV === 'local') {
-  winstonLogger.add(
+  Logger.add(
     new transports.Console({
       format: combine(timestamp(), logFormatPrintf),
     })
   );
+
+  Logger.mongoLogger = function (message?: string, state?: TLoggerState) {
+    Logger.info(message as string, { ...state });
+  };
 }
 
-winstonLogger.morganStream = {
+Logger.morganStream = {
   write: function (message) {
-    winstonLogger.info(message.substring(0, message.lastIndexOf('\n')), {
+    Logger.info(message.substring(0, message.lastIndexOf('\n')), {
       module: 'logger.js',
     });
   },
 };
 
-export default winstonLogger;
+export default Logger;
